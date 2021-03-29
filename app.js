@@ -1,12 +1,13 @@
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
+const thick = document.getElementById("jsThick");
 
 canvas.width = 700;
 canvas.height = 700;
 
 ctx.strokeStyle = "#2c2c2c";
-ctx.lineWidth = 2.5;
+ctx.lineWidth = 5;
 
 let painting = false;
 
@@ -35,6 +36,11 @@ function handleColorClick(event) {
   ctx.strokeStyle = color;
 }
 
+function handleThickChange(event) {
+  const size = event.target.value;
+  ctx.lineWidth = size;
+}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
@@ -45,3 +51,7 @@ if (canvas) {
 Array.from(colors).forEach((color) =>
   color.addEventListener("click", handleColorClick)
 );
+
+if (thick) {
+  thick.addEventListener("input", handleThickChange);
+}
